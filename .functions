@@ -1,0 +1,51 @@
+#Open Man page in Preview
+function pman() 
+{
+  man -t "${1}" | open -f -a /Applications/Preview.app
+}
+
+# add my RSA public key to the authorized_keys file on a remote machine
+function key()
+{
+  #printf "argc: $#\n"
+  if [ -z $1 ]; then
+    printf "USAGE: key HOST\n"
+    printf "  where HOST is the remote host where you want to put your public key\n"
+  else
+    cat ~/.ssh/id_rsa.pub \
+      | ssh $1 "mkdir .ssh 2>/dev/null; cat >> .ssh/authorized_keys"
+    printf "put public key in .ssh/authorized_keys on $1\n"
+  fi
+}
+
+
+# Create a new directory and enter it
+function md()
+{
+  mkdir -p "$@" && cd "$@"
+}
+
+# print to the CS Lab printer in FEC309
+function printlab()
+{
+  ssh stharding@moons "lp -d fec309" < "$1"
+}
+
+# returns a URL which contains the file given as an arg
+function sprunge()
+{
+  if [ -z $1 ]; then
+    printf "USAGE:\n"
+    printf "  sprunge FILE\n"
+    printf "  the sprunge url will be in the system clipboard\n"
+  else
+    cat $1 | curl -F 'sprunge=<-' http://sprunge.us | tee >(pbcopy)
+  fi
+}
+
+# Allows an arbitrary command to be executed and not show up in the history
+# USAGE: quiet COMMAND ARGS
+function quiet()
+{
+  TMP=$(history | tail -1 | awk '{print $1}') && history -d $TMP && $@
+}
