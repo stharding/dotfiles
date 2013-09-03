@@ -50,3 +50,6 @@ alias la="ls -a"
 alias lla="ls -al"
 alias l="ls"
 alias sl="ls" # because I am always doing this ...
+
+alias vnc="open -a /System/Library/CoreServices/Screen\ Sharing.app"
+

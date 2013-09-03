@@ -1,11 +1,31 @@
-#Open Man page in Preview
-function pman() 
+# Open Man page in Preview
+  pman() 
 {
-  man -t "${1}" | open -f -a /Applications/Preview.app
+  man -t $@ | open -f -a /Applications/Preview.app
+}
+
+# Open man page in textmate
+tman () 
+{
+  MANWIDTH=160 MANPAGER='col -bx' man $@ | mate
+}
+
+# Open man page in Sublime Text
+sman()
+{
+    man $@ | col -b | open -f -a /Applications/Sublime\ Text\ 3.app/Contents/MacOS/Sublime\ Text
+}
+
+# launch a webserver that serves the current directory
+# with the default port 8080 or whatever port is specified
+# as an optional argument
+serve()
+{
+  python -m SimpleHTTPServer ${1:-8080}
 }
 
 # add my RSA public key to the authorized_keys file on a remote machine
-function key()
+key()
 {
   #printf "argc: $#\n"
   if [ -z $1 ]; then
@@ -20,19 +40,19 @@ function key()
 
 
 # Create a new directory and enter it
-function md()
-{
-  mkdir -p "$@" && cd "$@"
-}
+#md()
+#{
+#  mkdir -p "$@" && cd "$@"
+#}
 
 # print to the CS Lab printer in FEC309
-function printlab()
+printlab()
 {
   ssh stharding@moons "lp -d fec309" < "$1"
 }
 
 # returns a URL which contains the file given as an arg
-function sprunge()
+sprunge()
 {
   if [ -z $1 ]; then
     printf "USAGE:\n"
@@ -45,7 +65,7 @@ function sprunge()
 
 # Allows an arbitrary command to be executed and not show up in the history
 # USAGE: quiet COMMAND ARGS
-function quiet()
+quiet()
 {
   TMP=$(history | tail -1 | awk '{print $1}') && history -d $TMP && $@
 }
