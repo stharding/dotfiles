@@ -1,5 +1,5 @@
 # Open Man page in Preview
-  pman() 
+pman() 
 {
   man -t $@ | open -f -a /Applications/Preview.app
 }
@@ -52,8 +52,8 @@ printlab()
 }
 
 # returns a URL which contains the file given as an arg
-sprunge()
-{
+sprunge() # Takes a file and returns a url which has the contents of the file.
+{         # The url is copied to the system clipboard and printed to stdout
   if [ -z $1 ]; then
     printf "USAGE:\n"
     printf "  sprunge FILE\n"
