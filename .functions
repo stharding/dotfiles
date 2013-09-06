@@ -69,3 +69,16 @@ quiet()
 {
   TMP=$(history | tail -1 | awk '{print $1}') && history -d $TMP && $@
 }
+
+
+google() 
+{ 
+  open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q=$1"; 
+}
+
+wiki() 
+{ 
+  open /Applications/Google\ Chrome.app/ \
+  "http://en.wikipedia.org/wiki/Special:Search?search= $1";
+}
+
