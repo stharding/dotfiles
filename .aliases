@@ -1,29 +1,41 @@
-# call valgrind with os x lion suppressions
-alias valgrind='valgrind --suppressions=/Users/stharding/.valgrind/darwin11.supp'
+#!/usr/env zsh
 
-# Show local and external ip addresses
-alias ip="echo 'local ip(s): '; ipconfig getifaddr en0 ; ipconfig getifaddr en1 ; echo 'extern: ' ; dig +short myip.opendns.com @resolver1.opendns.com"
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    # call valgrind with os x lion suppressions
+    alias valgrind='valgrind --suppressions=/Users/stharding/.valgrind/darwin11.supp'
 
-# Flush Directory Service cache
-alias flush="dscacheutil -flushcache"
+    # Show local and external ip addresses
+    alias ip="echo 'local ip(s): '; ipconfig getifaddr en0 ; ipconfig getifaddr en1 ; echo 'extern: ' ; dig +short myip.opendns.com @resolver1.opendns.com"
 
-# prevent sleeping
-alias noidle="pmset noidle"
+    # Flush Directory Service cache
+    alias flush="dscacheutil -flushcache"
 
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false && killall Finder"
+    # prevent sleeping
+    alias noidle="pmset noidle"
+
+    # Show/hide hidden files in Finder
+    alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder"
+    alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false && killall Finder"
+
+    # open shorthand
+    alias o="open"
+    alias oo="open ."
+    
+    # Textmate aliases
+    alias mm="mate ."
+    alias m="mate"
+
+    alias vlc="/Applications/VLC.app/Contents/MacOS/VLC -I rc"    
+
+    alias ls="ls -G -F"
+
+    alias vnc="open -a /System/Library/CoreServices/Screen\ Sharing.app"
+else
+    alias ls="ls --color -F"
+fi
 
 # command line speedtest
 alias speed="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
-
-# open shorthand
-alias o="open"
-alias oo="open ."
-
-# Textmate aliases
-alias mm="mate ."
-alias m="mate"
 
 # Limit ping to 5 pings
 alias ping="ping -c 5"
@@ -41,15 +53,12 @@ alias real="ssh real"
 alias prime="ssh prime"
 alias realtunnel="ssh -f -N -L5005:127.0.0.1:5005 real"
 alias rt="realtunnel"
-alias vlc="/Applications/VLC.app/Contents/MacOS/VLC -I rc"
+
 
 # ls aliases
-alias ls="ls -G -F"
 alias ll="ls -l"
 alias la="ls -a"
 alias lla="ls -al"
 alias l="ls"
 alias sl="ls" # because I am always doing this ...
-
-alias vnc="open -a /System/Library/CoreServices/Screen\ Sharing.app"
 
