@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTDIR="~/.dotfiles"
+DOTDIR="~/.dotfiles/"
 
 if [[ ! -z $1 ]]; then
   DOTDIR="$1"
@@ -9,7 +9,7 @@ fi
 cd ~/
 
 if [[ ! -d "~/.oh-my-zsh" ]]; then
-  https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
 if [[ ! -d "~/.vim" ]]; then
