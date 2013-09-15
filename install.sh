@@ -1,5 +1,11 @@
 #!/bin/bash
 
+DOTDIR="~/.dotfiles"
+
+if [[ ! -z $1 ]]; then
+  DOTDIR="$1"
+fi
+
 cd ~/
 
 if [[ ! -d "~/.oh-my-zsh" ]]; then
@@ -11,8 +17,6 @@ if [[ ! -d "~/.vim" ]]; then
   tar zxf .vim.tgz
   rm .vim.tgz
 fi
-
-git clone git@github.com:stharding/dotfiles.git ~/.dotfiles
 
 for i in `\ls -ad1 ~/.dotfiles/\.* | grep -v -e ".git"`; do
   mv $i $i.old 2>/dev/null
