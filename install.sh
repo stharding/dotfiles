@@ -18,7 +18,7 @@ if [[ ! -d "~/.vim" ]]; then
   rm .vim.tgz
 fi
 
-for i in `\ls -ad1 ~/.dotfiles/\.* | grep -v -e ".git"`; do
+for i in `\ls -ad1 $DOTDIR\.* | grep -v -e ".git"`; do
   mv $i $i.old 2>/dev/null
   ln -s .dotfiles/$i . 2>/dev/null
 done
