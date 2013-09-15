@@ -20,7 +20,6 @@ if [[ ! -d ~/.vim ]]; then
 fi
 
 for i in `\ls -ad1 $DOTDIR\.* | grep -v -e ".git"`; do
-#for i in `\ls -ad1 $DOTDIR\.*`; do
   j=$(basename $i)
   mv $j $j.old 2>/dev/null
   ln -s .dotfiles/$j . 2>/dev/null
