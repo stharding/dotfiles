@@ -83,9 +83,15 @@ ${git_info}
 %{$fg_bold[red]%}⭆ %{$reset_color%}"
 # ⭆-⟩
 
-RPROMPT="%{$fg_bold[yellow]%} -- %*  %W -- %{$reset_color%}"
+RPROMPT="\
+%{$fg_bold[yellow]%} -- %*  %W \
+%{$fg_bold[green]%} $(battery_pct)%%\
+%{$fg_bold[yellow]%} -- %{$reset_color%}"
+
+
 PATH=/opt/local/bin:/opt/local/sbin:/usr/texbin:\
-/Users/stharding/anaconda/bin:/Users/stharding/bin:$PATH
+/Users/stharding/anaconda/bin:/Users/stharding/bin:\
+/Users/stharding/.scala-2.10.2/bin:$PATH
 export PATH
 
 # eval $(ssh-agent) >/dev/null 2>&1 
