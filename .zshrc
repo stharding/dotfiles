@@ -83,11 +83,15 @@ ${git_info}
 %{$fg_bold[red]%}⭆ %{$reset_color%}"
 # ⭆-⟩
 
-RPROMPT="\
-%{$fg_bold[yellow]%} -- %*  %W \
-%{$fg_bold[green]%} $(battery_pct)%%\
-%{$fg_bold[yellow]%} -- %{$reset_color%}"
-
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    RPROMPT="\
+    %{$fg_bold[yellow]%} -- %*  %W \
+    %{$fg_bold[green]%} $(battery_pct)%%\
+    %{$fg_bold[yellow]%} -- %{$reset_color%}"
+else
+    RPROMPT="\
+    %{$fg_bold[yellow]%} -- %*  %W -- %{$reset_color%}"
+fi
 
 PATH=/opt/local/bin:/opt/local/sbin:/usr/texbin:\
 /Users/stharding/anaconda/bin:/Users/stharding/bin:\
