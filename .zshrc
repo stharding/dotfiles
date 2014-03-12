@@ -80,22 +80,25 @@ PROMPT="
 %{$fg[yellow]%}in \
 %{$fg_bold[green]%}${current_dir}%{$reset_color%}\
 ${git_info} 
-%{$fg_bold[red]%}⭆ %{$reset_color%}"
-# ⭆-⟩
+%{$fg_bold[red]%}ᗈ %{$reset_color%}"
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-    RPROMPT="\
-    %{$fg_bold[yellow]%} -- %*  %W \
-    %{$fg_bold[green]%} $(battery_pct)%%\
-    %{$fg_bold[yellow]%} -- %{$reset_color%}"
-else
-    RPROMPT="\
-    %{$fg_bold[yellow]%} -- %*  %W -- %{$reset_color%}"
-fi
+RPROMPT="%{$fg_bold[yellow]%} -- %*  %W -- %{$reset_color%}"
+
+
+# if [[ "$OSTYPE" =~ ^darwin ]]; then
+#     RPROMPT="\
+#     %{$fg_bold[yellow]%} -- %*  %W \
+#     %{$fg_bold[green]%} ${battery_pct}%%\
+#     %{$fg_bold[yellow]%} -- %{$reset_color%}"
+# else
+#     RPROMPT="\
+#     %{$fg_bold[yellow]%} -- %*  %W -- %{$reset_color%}"
+# fi
 
 PATH=/opt/local/bin:/opt/local/sbin:/usr/texbin:\
 /Users/stharding/anaconda/bin:/Users/stharding/bin:\
 /Users/stharding/.scala-2.10.2/bin:$PATH
+PATH=$PATH:/Users/stharding/anaconda/bin/
 export PATH
 
 # eval $(ssh-agent) >/dev/null 2>&1 
@@ -138,4 +141,6 @@ fi
 # Load my aliases/functions:
 . ~/.aliases
 . ~/.functions
+
+# . /Users/stharding/screen-ssh-agent
 
