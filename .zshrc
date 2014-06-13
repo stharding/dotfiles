@@ -95,10 +95,10 @@ RPROMPT="%{$fg_bold[yellow]%} -- %*  %W -- %{$reset_color%}"
 #     %{$fg_bold[yellow]%} -- %*  %W -- %{$reset_color%}"
 # fi
 
-PATH=/opt/local/bin:/opt/local/sbin:/usr/texbin:\
+PATH=$PATH:/opt/local/bin:/opt/local/sbin:/usr/texbin:\
 /Users/stharding/anaconda/bin:/Users/stharding/bin:\
 /Users/stharding/.scala-2.10.2/bin:$PATH
-PATH=$PATH:/Users/stharding/anaconda/bin/
+PATH=$PATH:/Users/stharding/anaconda/bin/:/Users/stharding/Library/Haskell/bin
 export PATH
 
 # eval $(ssh-agent) >/dev/null 2>&1 
@@ -110,37 +110,39 @@ if [ ! -z $VLESS ]; then
   alias less=$VLESS
 fi
 
-# Start/Reuse SSH Agent - restart or re-use an existing agent
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-    SSH_AGENT_CACHE=/tmp/ssh_agent_eval_`whoami`
-    if [ -s "${SSH_AGENT_CACHE}" ]
-    then
-        echo "Reusing existing ssh-agent"
-        eval `cat "${SSH_AGENT_CACHE}"`
-        # Check that agent still exists
-        kill -0 "${SSH_AGENT_PID}" 2>/dev/null
-        if [ $? -eq 1 ]
-        then
-            echo "ssh-agent pid ${SSH_AGENT_PID} no longer running"
-            # Looks like the SSH-Agent has died, it'll be restarted below
-            rm -f "${SSH_AGENT_CACHE}"
-        fi
-    fi
+#### this is not required on OS X ... simply do ssh-add -K ~/.ssh/id_rsa 
+#### and keychain will take care of the rest 
 
-    if [ ! -f "${SSH_AGENT_CACHE}" ]
-    then
-        echo "Starting new ssh-agent"
-        touch "${SSH_AGENT_CACHE}"
-        chmod 600 "${SSH_AGENT_CACHE}"
-        ssh-agent >> "${SSH_AGENT_CACHE}"
-        chmod 400 "${SSH_AGENT_CACHE}"
-        eval `cat "${SSH_AGENT_CACHE}"`
-        ssh-add ~/.ssh/id_rsa
-    fi
-fi
+# Start/Reuse SSH Agent - restart or re-use an existing agent
+# if [[ "$OSTYPE" =~ ^darwin ]]; then
+#     SSH_AGENT_CACHE=/tmp/ssh_agent_eval_`whoami`
+#     if [ -s "${SSH_AGENT_CACHE}" ]
+#     then
+#         echo "Reusing existing ssh-agent"
+#         eval `cat "${SSH_AGENT_CACHE}"`
+#         # Check that agent still exists
+#         kill -0 "${SSH_AGENT_PID}" 2>/dev/null
+#         if [ $? -eq 1 ]
+#         then
+#             echo "ssh-agent pid ${SSH_AGENT_PID} no longer running"
+#             # Looks like the SSH-Agent has died, it'll be restarted below
+#             rm -f "${SSH_AGENT_CACHE}"
+#         fi
+#     fi
+# 
+#     if [ ! -f "${SSH_AGENT_CACHE}" ]
+#     then
+#         echo "Starting new ssh-agent"
+#         touch "${SSH_AGENT_CACHE}"
+#         chmod 600 "${SSH_AGENT_CACHE}"
+#         ssh-agent >> "${SSH_AGENT_CACHE}"
+#         chmod 400 "${SSH_AGENT_CACHE}"
+#         eval `cat "${SSH_AGENT_CACHE}"`
+#         ssh-add ~/.ssh/id_rsa
+#     fi
+# fi
 # Load my aliases/functions:
 . ~/.aliases
 . ~/.functions
 
 # . /Users/stharding/screen-ssh-agent
-
