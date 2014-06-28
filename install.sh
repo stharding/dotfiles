@@ -24,3 +24,6 @@ for i in `\ls -ad1 $DOTDIR\.* | grep -v -e ".git"`; do
   mv $j $j.old 2>/dev/null
   ln -s .dotfiles/$j . 2>/dev/null
 done
+
+cd ~/
+ln -s $DOTDIR .dotfiles
