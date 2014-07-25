@@ -23,11 +23,11 @@ au BufRead,BufNewFile *.c set tabstop=2
 au BufRead,BufNewFile *.c set shiftwidth=2
 ab bbb /*
 ab eee */
-ab stdio #include <stdio.h>
-ab stdlib #include <stdlib.h>
-ab sth #include <string.h>
-ab vvv (void)
-ab prf printf("
+" ab stdio #include <stdio.h>
+" ab stdlib #include <stdlib.h>
+" ab sth #include <string.h>
+" ab vvv (void)
+" ab prf printf("
 " ___________________________________________
 
 " Enable features that may not be on by default
