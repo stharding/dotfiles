@@ -22,3 +22,6 @@ export QUICK_LISP=~/quicklisp
 export LISP_STACK=$((30*1024))
 export HISTFILESIZE=9000
 export HISTSIZE=9000
+
+export DYLD_LIBRARY_PATH=$MOCU4/dist/lib:$DYLD_LIBRARY_PATH
+

@@ -131,3 +131,6 @@ eval $(ssh-agent) >/dev/null 2>&1
 
 # added by Anaconda 1.6.1 installer
 export PATH="/Users/stharding/anaconda/bin:$PATH"
+
+# added by Anaconda2 2.4.1 installer
+export PATH="/Users/harding/anaconda/bin:$PATH"

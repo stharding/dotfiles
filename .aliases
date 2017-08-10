@@ -64,7 +64,13 @@ alias lla="ls -al"
 alias l="ls"
 alias sl="ls" # because I am always doing this ...
 
+alias mkae="make"
+alias amke="make"
+alias maek="make"
+
 #alias Attach='grabssh ; screen -d -R'
 #alias fixssh='source $HOME/bin/fixssh'
 #alias ssh='fixssh; ssh'
+
+alias java="java -Djava.library.path=\"$HOME/repos/mocu4/dist/lib\""
 

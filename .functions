@@ -1,19 +1,13 @@
 # Open Man page in Preview
-pman() 
+pman()
 {
   man -t $@ | open -f -a /Applications/Preview.app
-}
-
-# Open man page in textmate
-tman () 
-{
-  MANWIDTH=160 MANPAGER='col -bx' man $@ | mate
 }
 
 # Open man page in Sublime Text
 sman()
 {
-    man $@ | col -b | open -f -a /Applications/Sublime\ Text\ 3.app/Contents/MacOS/Sublime\ Text
+    man $@ | col -b | subl -
 }
 
 # launch a webserver that serves the current directory
@@ -59,8 +53,15 @@ sprunge() # Takes a file and returns a url which has the contents of the file.
     printf "  sprunge FILE\n"
     printf "  the sprunge url will be in the system clipboard\n"
   else
-    cat $1 | curl -F 'sprunge=<-' http://sprunge.us | tee >(pbcopy)
+    res=$(cat $1 | curl -F 'sprunge=<-' http://sprunge.us)
+    echo $res\?$(ext $1) | tee >(pbcopy)
   fi
+}
+
+
+ext()
+{
+    print $1:e
 }
 
 # Allows an arbitrary command to be executed and not show up in the history
@@ -71,14 +72,37 @@ quiet()
 }
 
 
-google() 
-{ 
-  open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q=$1"; 
+google()
+{
+  open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q=$1";
 }
 
-wiki() 
-{ 
+wiki()
+{
   open /Applications/Google\ Chrome.app/ \
   "http://en.wikipedia.org/wiki/Special:Search?search= $1";
 }
+
+tunnel () {
+  if [[ -z $1 || -z $2 ]]
+  then
+    echo "USAGE: $0 <local-port> <host> [remote-port]"
+    echo "       if remote-port is not supplied, the"
+    echo "       remote-port will be set to local-port"
+  else
+    LOCALPORT=$1
+    HOST=$2
+    REMOTEPORT=$3
+    [ -z $REMOTEPORT ] && REMOTEPORT=$LOCALPORT
+    ssh -fNL${LOCALPORT}:localhost:${REMOTEPORT} ${HOST}
+  fi
+}
+
+store_tiff() {
+    if [ -f 20120505_083033_MineGarden15-N-S-1_IVER2-146_WP4-P-MatchFilter-3.tif ]
+        then
+        mv 20120505_083033_MineGarden15-N-S-1_IVER2-146_WP4-P-MatchFilter-3.tif $(python -c 'import time;print time.time()').tiff
+     fi
+}
+
 

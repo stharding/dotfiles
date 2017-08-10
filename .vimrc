@@ -3,7 +3,6 @@ let g:solarized_termcolors=512
 syntax on
 syntax enable
 set background=dark
-colorscheme solarized
 set number
 au BufRead,BufNewFile *.tex set expandtab
 au BufRead,BufNewFile *.tex set tabstop=4
